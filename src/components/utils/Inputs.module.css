@@ -419,11 +419,53 @@
     position: relative;
 }
 
-.currencyBefore::after {
+.currencyBefore1 {
+    position: relative;
+}
+.currencyBefore2 {
+    position: relative;
+}
+.currencyBefore3 {
+    position: relative;
+}
+/* .currencyBefore::after {
     content: "R$";
     display: inline;
     position: absolute;
     left: 8px;
+    top: 38px;
+    font-size: 16px;
+    color: var(--white-90);
+    font-weight: 500;
+} */
+
+.currencyBefore1::after {
+    content: "cm";
+    display: inline;
+    position: absolute;
+    left: 44px;
+    top: 38px;
+    font-size: 16px;
+    color: var(--white-90);
+    font-weight: 500;
+}
+
+.currencyBefore2::after {
+    content: "cm";
+    display: inline;
+    position: absolute;
+    left: 52px;
+    top: 38px;
+    font-size: 16px;
+    color: var(--white-90);
+    font-weight: 500;
+}
+
+.currencyBefore3::after {
+    content: "cm";
+    display: inline;
+    position: absolute;
+    left: 62px;
     top: 38px;
     font-size: 16px;
     color: var(--white-90);

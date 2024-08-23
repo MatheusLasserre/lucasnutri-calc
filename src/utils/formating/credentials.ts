@@ -16,7 +16,7 @@ export const FormatNumberMask = (value: number, AppendCurrency?:string) => {
     const prefix = Number(value) < 0 ? '-' : '';
     mystring = [prefix, mystring, last2digits].join('');
     if(AppendCurrency) {
-        mystring = [AppendCurrency, ' ', mystring].join('');
+        mystring = [mystring, ' ', AppendCurrency].join('');
     }
     return mystring;
 }

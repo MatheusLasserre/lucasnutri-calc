@@ -2,6 +2,7 @@
 Input: Sexo(Homem ou Mulher)
 Input: Etnia(Negro ou Branco)
 Input: Altura do joelho(cm)
+Input: Altura(cm)
 Input: (idade)
 Input: Circunferência do braço(cm)
 Input: Circunferência de panturrilha(cm)
@@ -31,7 +32,7 @@ Alternativa: Peso Corporal(kg) - (0,5263 x circunferência de abdomen) + (0,5759
 Peso Corporal(kg) - (0,4808 x Circunferência de braço) + (0,5646 x circunferência de abdômen) + (1,3160 x circuferência de panturrilha) - 42,2450
 
 ## Formula de ALTURA mais recomendada para MULHERES por Rabito et al:
-
+requirements: sexo, idade, semi-envergadura
 Altura = 63,525 – (3,237 x sexo) – (0,06904 x idade) + (1,293 x semi-envergadura)
 
 Homem: 1, Mulher: 2
@@ -77,6 +78,8 @@ Calcular peso pra IMC 22
  Peso ideal vai ser o valor entre os dois resultados
 
 -------------------------------------------
+
+
 
 # Peso ajustado (edemas, amputacoes)
 Requirements: Peso, Amputação, Edema, Ascite

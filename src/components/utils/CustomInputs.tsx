@@ -6,8 +6,6 @@ import {
   handleValueInputChange,
   padWithLeadingZeros,
 } from '~/utils/formating/credentials'
-import 'react-date-range/dist/styles.css' // main css file
-import 'react-date-range/dist/theme/default.css' // theme css file
 import Style from './CustomInputs.module.css'
 import { CFalseText, CFalseTextMini } from './Inputs'
 import { AngleUpIcon } from './Icons'

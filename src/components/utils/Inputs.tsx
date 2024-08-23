@@ -393,6 +393,47 @@ export const CLCurrencyInput: React.FC<CurrencyInputProps> = ({
     </label>
   )
 }
+export const CLCurrencyInput2: React.FC<CurrencyInputProps> = ({
+  currencyValue,
+  setCurrencyValue,
+  label,
+  labelClassName,
+  className,
+  maxLength,
+  placeholder,
+}) => {
+  const [editValueString, setEditValueString] = useState(currencyValue.toString())
+  const handleEditTransferAmountChange = (val: string) => {
+    // setEditValueString(handleValueInputChange(val, currencyValue))
+    setCurrencyValue(Number(val))
+  }
+
+  useEffect(() => {
+    setEditValueString(currencyValue.toString())
+    console.log(editValueString.length)
+  }, [currencyValue])
+  const classNames = {
+    1: Style.currencyBefore1,
+    2: Style.currencyBefore2,
+    3: Style.currencyBefore3,
+  } as Record<number, string>
+  return (
+    <label className={clx(labelClassName || Style.label, classNames[editValueString.length])}>
+      {label}
+      <CText
+        value={editValueString}
+        onChange={(e) => handleEditTransferAmountChange(e.currentTarget.value)}
+        required
+        type='text'
+        name='value'
+        id='value'
+        placeholder={placeholder}
+        maxLength={maxLength}
+        className={clx(className)}
+      />
+    </label>
+  )
+}
 
 type SelectNumberProps = {
   range: [number, number]

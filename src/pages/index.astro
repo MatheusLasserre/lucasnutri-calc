@@ -1,9 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { PesoEstimado } from '../components/forms/peso-estimado/Index';
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout >
+	<head>
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>título</title>
+	</head>
 	<main>
+		<PesoEstimado client:load />
 	</main>
 </Layout>
 
