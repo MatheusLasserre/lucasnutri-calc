@@ -471,3 +471,89 @@
     color: var(--white-90);
     font-weight: 500;
 }
+
+.currencyBefore1desc {
+    position: relative;
+}
+.currencyBefore2desc {
+    position: relative;
+}
+.currencyBefore3desc {
+    position: relative;
+}
+
+.currencyBefore1desc::after {
+    content: "cm";
+    display: inline;
+    position: absolute;
+    left: 44px;
+    top: 54px; 
+    font-size: 16px;
+    color: var(--white-90);
+    font-weight: 500;
+}
+
+.currencyBefore2desc::after {
+    content: "cm";
+    display: inline;
+    position: absolute;
+    left: 52px;
+    top: 54px;
+    font-size: 16px;
+    color: var(--white-90);
+    font-weight: 500;
+}
+
+.currencyBefore3desc::after {
+    content: "cm";
+    display: inline;
+    position: absolute;
+    left: 62px;
+    top: 54px;
+    font-size: 16px;
+    color: var(--white-90);
+    font-weight: 500;
+}
+
+.currencyBefore1kg {
+    position: relative;
+}
+.currencyBefore2kg {
+    position: relative;
+}
+.currencyBefore3kg {
+    position: relative;
+}
+
+.currencyBefore1kg::after {
+    content: "kg";
+    display: inline;
+    position: absolute;
+    left: 44px;
+    top: 38px;
+    font-size: 16px;
+    color: var(--white-90);
+    font-weight: 500;
+}
+
+.currencyBefore2kg::after {
+    content: "kg";
+    display: inline;
+    position: absolute;
+    left: 52px;
+    top: 38px;
+    font-size: 16px;
+    color: var(--white-90);
+    font-weight: 500;
+}
+
+.currencyBefore3kg::after {
+    content: "kg";
+    display: inline;
+    position: absolute;
+    left: 62px;
+    top: 38px;
+    font-size: 16px;
+    color: var(--white-90);
+    font-weight: 500;
+}

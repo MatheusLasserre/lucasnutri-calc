@@ -473,6 +473,94 @@ export const CLCurrencyInput3: React.FC<CurrencyInputProps> = ({
   )
 }
 
+export const CLCurrencyInput2Desc: React.FC<CurrencyInputProps & {description: string}> = ({
+  currencyValue,
+  setCurrencyValue,
+  label,
+  labelClassName,
+  className,
+  maxLength,
+  placeholder,
+  description
+}) => {
+  const [editValueString, setEditValueString] = useState(currencyValue.toString())
+  const handleEditTransferAmountChange = (val: string) => {
+    // setEditValueString(handleValueInputChange(val, currencyValue))
+    setCurrencyValue(Number(val))
+  }
+
+  useEffect(() => {
+    setEditValueString(currencyValue.toString())
+    console.log(editValueString.length)
+  }, [currencyValue])
+  const classNames = {
+    1: Style.currencyBefore1desc,
+    2: Style.currencyBefore2desc,
+    3: Style.currencyBefore3desc,
+  } as Record<number, string>
+  return (
+    <label className={clx(labelClassName || Style.label, classNames[editValueString.length])}>
+      {label}
+      <CommonText fontSize='11px' marginBottom='0' fontWeight='500' color='secondary-red-400' marginTop='-10px' textAlign='left'>
+      {description}
+      </CommonText>
+      <CText
+        value={editValueString}
+        onChange={(e) => handleEditTransferAmountChange(e.currentTarget.value)}
+        required
+        type='text'
+        name='value'
+        id='value'
+        placeholder={placeholder}
+        maxLength={maxLength}
+        className={clx(className)}
+      />
+    </label>
+  )
+}
+
+export const CLCurrencyInput2kg: React.FC<CurrencyInputProps> = ({
+  currencyValue,
+  setCurrencyValue,
+  label,
+  labelClassName,
+  className,
+  maxLength,
+  placeholder,
+}) => {
+  const [editValueString, setEditValueString] = useState(currencyValue.toString())
+  const handleEditTransferAmountChange = (val: string) => {
+    // setEditValueString(handleValueInputChange(val, currencyValue))
+    setCurrencyValue(Number(val))
+  }
+
+  useEffect(() => {
+    setEditValueString(currencyValue.toString())
+    console.log(editValueString.length)
+  }, [currencyValue])
+  const classNames = {
+    1: Style.currencyBefore1kg,
+    2: Style.currencyBefore2kg,
+    3: Style.currencyBefore3kg,
+  } as Record<number, string>
+  return (
+    <label className={clx(labelClassName || Style.label, classNames[editValueString.length])}>
+      {label}
+      <CText
+        value={editValueString}
+        onChange={(e) => handleEditTransferAmountChange(e.currentTarget.value)}
+        required
+        type='text'
+        name='value'
+        id='value'
+        placeholder={placeholder}
+        maxLength={maxLength}
+        className={clx(className)}
+      />
+    </label>
+  )
+}
+
 type SelectNumberProps = {
   range: [number, number]
   paddingZeros?: number

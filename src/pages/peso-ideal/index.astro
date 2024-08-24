@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { PesoIdeal } from '../../components/forms/peso-ideal/Index';
+---
+
+<Layout >
+	<head>
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>título</title>
+	</head>
+	<main style="padding: 0px 10px 20px 10px;">
+		<PesoIdeal client:load />
+	</main>
+</Layout>
+
+

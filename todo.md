@@ -57,7 +57,7 @@ Hierarquia Mulher:
 
 
 
-# Adequação de circunferência braquial; -> Adequação + Diagnóstico
+# Adequação de circunferência braquial(braço); -> Adequação + Diagnóstico
 Requirements: CB obtida, idade, sexo
 Adequação da CB = CB obtida(cm) x 100 / CB P50(cm)
 ANOTAR TABELA

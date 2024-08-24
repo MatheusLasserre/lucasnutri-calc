@@ -1,5 +1,6 @@
 import type { PesoEstimadoInputProps } from '~/components/forms/peso-estimado/Index'
 import { getEtniaByNumber, getSexByNumber, isIdoso } from './getters'
+import type { PesoIdealInputProps } from '~/components/forms/peso-ideal/Index'
 
 const AlturaHomemChumlea = (joelho: number, idade: number, etnia: 1 | 2, sexo: 1 | 2) => {
   const Etnia = getEtniaByNumber(etnia)
@@ -52,34 +53,80 @@ const PesoMulherChumlea = (
   }
 }
 
+const PesoHomemPadrão = (braço: number, joelho: number, idade: number, etnia: 1 | 2) => {
+  if (idade < 60) {
+    if (getEtniaByNumber(etnia) === 'Negro') {
+      return joelho * 1.09 + braço * 3.14 - 83.72
+    } else {
+      return joelho * 1.19 + braço * 3.21 - 86.82
+    }
+  } else {
+    if (getEtniaByNumber(etnia) === 'Negro') {
+      return joelho * 0.44 + braço * 2.86 - 38.21
+    } else {
+      return joelho * 1.1 + braço * 3.07 - 75.81
+    }
+  }
+}
+
+const PesoMulherPadrão = (braço: number, joelho: number, idade: number, etnia: 1 | 2) => {
+  if (idade < 60) {
+    if (getEtniaByNumber(etnia) === 'Negro') {
+      return joelho * 1.24 + braço * 2.97 - 82.48
+    } else {
+      return joelho * 1.01 + braço * 2.81 - 60.04
+    }
+  } else {
+    if (getEtniaByNumber(etnia) === 'Negro') {
+      return joelho * 1.5 + braço * 2.58 - 84.22
+    } else {
+      return joelho * 1.09 + braço * 2.68 - 65.51
+    }
+  }
+}
+
 export type CalcPesoEstimadoResult = {
   peso: {
-      value: number;
-      calc: string;
-  };
+    value: number
+    calc: string
+  }
   altura: {
-      value: number;
-      calc: string;
-  };
+    value: number
+    calc: string
+  }
   IMC: {
-      imc: string;
-      result: string;
-  };
+    imc: string
+    result: string
+  }
 }
 export const CalcPesoEstimado = (input: PesoEstimadoInputProps): CalcPesoEstimadoResult => {
   const Sexo = getSexByNumber(input.sexo as 1 | 2)
   if (Sexo === 'Homem') {
-    const peso = {
-      value: Math.round(PesoHomemRabito(input.braço, input.panturrilha, input.abdomen) * 100) / 100,
-      calc: 'Peso Estimado (Rabito et al)',
+    let peso = {
+      value: 0,
+      calc: '',
+    }
+    if (input.abdomen) {
+      peso = {
+        value:
+          Math.round(PesoHomemRabito(input.braço, input.panturrilha, input.abdomen) * 100) / 100,
+        calc: 'Peso Estimado (Rabito et al)',
+      }
+    } else {
+      peso = {
+        value:
+          Math.round(
+            PesoHomemPadrão(input.braço, input.joelho, input.idade, input.etnia as 1 | 2) * 100,
+          ) / 100,
+        calc: 'Peso Estimado (Básico)',
+      }
     }
     const altura = {
-      value: Math.round(AlturaHomemChumlea(
-        input.joelho,
-        input.idade,
-        input.etnia as 1 | 2,
-        input.sexo as 1 | 2,
-      ) * 100) / 100,
+      value:
+        Math.round(
+          AlturaHomemChumlea(input.joelho, input.idade, input.etnia as 1 | 2, input.sexo as 1 | 2) *
+            100,
+        ) / 100,
       calc: 'Altura Estimada (Chumlea et al)',
     }
     const IMC = CalcIMC(peso.value, altura.value, input.idade)
@@ -89,16 +136,30 @@ export const CalcPesoEstimado = (input: PesoEstimadoInputProps): CalcPesoEstimad
       IMC,
     }
   } else {
-    let peso = {
-      value: Math.round(PesoMulherChumlea(
-        input.abdomen,
-        input.braço,
-        input.panturrilha,
-        input.sexo as 1 | 2,
-        input.subescapular,
-        input.joelho,
-      ) * 100) / 100,
-      calc: 'Peso Estimado (Chumlea et al)',
+    let peso = { value: 0, calc: '' }
+    if (input.abdomen) {
+      peso = {
+        value:
+          Math.round(
+            PesoMulherChumlea(
+              input.abdomen,
+              input.braço,
+              input.panturrilha,
+              input.sexo as 1 | 2,
+              input.subescapular,
+              input.joelho,
+            ) * 100,
+          ) / 100,
+        calc: 'Peso Estimado (Chumlea et al)',
+      }
+    } else {
+      peso = {
+        value:
+          Math.round(
+            PesoMulherPadrão(input.braço, input.joelho, input.idade, input.etnia as 1 | 2) * 100,
+          ) / 100,
+        calc: 'Peso Estimado (Básico)',
+      }
     }
     let altura = {
       value: 0,
@@ -106,17 +167,23 @@ export const CalcPesoEstimado = (input: PesoEstimadoInputProps): CalcPesoEstimad
     }
     if (input.semiEnvergadura) {
       altura = {
-        value: Math.round(AlturaMulherRabito(input.semiEnvergadura, input.idade, input.sexo as 1 | 2) * 100) / 100,
+        value:
+          Math.round(
+            AlturaMulherRabito(input.semiEnvergadura, input.idade, input.sexo as 1 | 2) * 100,
+          ) / 100,
         calc: 'Altura Estimada (Rabito et al)',
       }
     } else {
       altura = {
-        value: Math.round(AlturaHomemChumlea(
-          input.joelho,
-          input.idade,
-          input.etnia as 1 | 2,
-          input.sexo as 1 | 2,
-        ) * 100) / 100,
+        value:
+          Math.round(
+            AlturaHomemChumlea(
+              input.joelho,
+              input.idade,
+              input.etnia as 1 | 2,
+              input.sexo as 1 | 2,
+            ) * 100,
+          ) / 100,
         calc: 'Altura Estimada (Chumlea et al)',
       }
     }
@@ -129,8 +196,53 @@ export const CalcPesoEstimado = (input: PesoEstimadoInputProps): CalcPesoEstimad
   }
 }
 
-const AdequacaoBraquial = (CB: number, idade: number, sexo: 1 | 2) => {
-  return (CB * 100) / ((CB * 100) / getP50(sexo, idade))
+const AdequacaoObject = [
+  {
+    minValue: 0,
+    maxValue: 70,
+    result: 'Desnutrição Grave',
+  },
+  {
+    minValue: 70,
+    maxValue: 80,
+    result: 'Desnutrição Moderada',
+  },
+  {
+    minValue: 80,
+    maxValue: 90,
+    result: 'Desnutrição Moderada',
+  },
+  {
+    minValue: 90,
+    maxValue: 110,
+    result: 'Eutrofia',
+  },
+  {
+    minValue: 110,
+    maxValue: 120,
+    result: 'sobrepeso',
+  },
+  {
+    minValue: 120,
+    maxValue: Infinity,
+    result: 'obesidade',
+  },
+]
+export type CalcAdequacaoBraquialResult = {
+  CB: number
+  result: string
+}
+export const CalcAdequacaoBraquial = (CB: number, idade: number, sexo: 1 | 2): CalcAdequacaoBraquialResult => {
+  const value = (CB * 100) / ((CB * 100) / getP50(sexo, idade))
+  const result = AdequacaoObject.find((element) => {
+    const result = element.minValue <= value && value <= element.maxValue
+    return result
+  })?.result
+  if (!result) throw new Error('CB não encontrado')
+  return {
+    CB,
+    result,
+  }
 }
 const P50Homem = [
   {
@@ -493,7 +605,7 @@ const IMCJObjectElder = [
 
 const CalcIMC = (peso: number, altura: number, idade: number) => {
   console.log(peso, altura, idade)
-  const IMC = peso / Math.pow((altura/100), 2)
+  const IMC = peso / Math.pow(altura / 100, 2)
   let IMCResult: string | undefined
   if (isIdoso(idade)) {
     IMCResult = IMCJObjectElder.find((element) => {
@@ -514,16 +626,16 @@ const CalcIMC = (peso: number, altura: number, idade: number) => {
 
 const CalcPesoByIMC = (altura: number, idade: number) => {
   if (isIdoso(idade)) {
-    const Peso1 = 22 * Math.pow(altura, 2)
-    const Peso2 = 27 * Math.pow(altura, 2)
+    const Peso1 = 22 * Math.pow(altura / 100, 2)
+    const Peso2 = 27 * Math.pow(altura / 100, 2)
     return {
       PesoMinimo: Peso1,
       PesoMaximo: Peso2,
     }
   }
 
-  const Peso1 = 18.5 * Math.pow(altura, 2)
-  const Peso2 = 24.9 * Math.pow(altura, 2)
+  const Peso1 = 18.5 * Math.pow(altura / 100, 2)
+  const Peso2 = 24.9 * Math.pow(altura / 100, 2)
 
   return {
     PesoMinimo: Peso1,
@@ -533,4 +645,23 @@ const CalcPesoByIMC = (altura: number, idade: number) => {
 
 const PesoIdeal = (altura: number, idade: number) => {
   return CalcPesoByIMC(altura, idade)
+}
+export type CalcPesoIdealResult = {
+  pesoMinimo: number
+  pesoMaximo: number
+  pesoAtual: number
+  IMC: {
+    imc: string
+    result: string
+  }
+}
+export const CalcPesoIdeal = (input: PesoIdealInputProps): CalcPesoIdealResult => {
+  const pesoIdeal = PesoIdeal(input.altura, input.idade)
+  const IMC = CalcIMC(input.peso, input.altura, input.idade)
+  return {
+    pesoMinimo: Math.round(pesoIdeal.PesoMinimo * 100) / 100,
+    pesoMaximo: Math.round(pesoIdeal.PesoMaximo * 100) / 100,
+    pesoAtual: Math.round(input.peso * 100) / 100,
+    IMC,
+  }
 }

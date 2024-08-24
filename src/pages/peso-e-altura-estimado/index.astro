@@ -1,6 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { PesoEstimadoResult } from '../components/forms/peso-estimado/Index';
+import Layout from '../../layouts/Layout.astro';
+import { PesoEstimado } from '../../components/forms/peso-estimado/Index';
 ---
 
 <Layout >
@@ -9,10 +9,10 @@ import { PesoEstimadoResult } from '../components/forms/peso-estimado/Index';
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Resultados</title>
+		<title>título</title>
 	</head>
-	<main>
-		<PesoEstimadoResult client:load />
+	<main style="padding: 0px 10px 20px 10px;">
+		<PesoEstimado client:load />
 	</main>
 </Layout>
 

@@ -5,6 +5,7 @@ import {
   CLabel,
   CLCurrencyInput,
   CLCurrencyInput2,
+  CLCurrencyInput2Desc,
   CLCurrencyInput3,
   CLRadio,
   CRadio,
@@ -23,7 +24,7 @@ export type PesoEstimadoInputProps = {
   joelho: number
   braço: number
   panturrilha: number
-  abdomen: number
+  abdomen?: number
   subescapular?: number
   semiEnvergadura?: number
 }
@@ -36,7 +37,7 @@ export const PesoEstimado: React.FC = () => {
     joelho: 0,
     braço: 0,
     panturrilha: 0,
-    abdomen: 0,
+    abdomen: undefined,
     subescapular: undefined,
     semiEnvergadura: undefined,
   })
@@ -53,10 +54,6 @@ export const PesoEstimado: React.FC = () => {
     }
     if (formInfo.panturrilha === 0) {
       setFormError('Circunferência do panturrilha precisa ser informada')
-      return
-    }
-    if (formInfo.abdomen === 0) {
-      setFormError('abdomen precisa ser informado')
       return
     }
     let truthyObject = {} as { [key: string]: number }
@@ -76,7 +73,7 @@ export const PesoEstimado: React.FC = () => {
       verticalAlign='flex-start'
       horizontalAlign='center'
       gap='20px'
-      margin='40px auto 0 auto'
+      margin='20px auto 0 auto'
       width='100%'
       maxWidth='400px'
       padding='80px 0 20px 0'
@@ -93,11 +90,12 @@ export const PesoEstimado: React.FC = () => {
         color='white-90'
         marginTop='0'
         textAlign='center'
+        lineHeight='22px'
       >
         Cálculo de Peso e Altura Estimado
       </CommonText>
       <CommonText fontSize='14px' fontWeight='500' color='white-90' marginTop='0' textAlign='left'>
-        Preencha os campos abaixo e veja o resultado. Preencha todos os dados para máxima precisão. 
+        Preencha os campos abaixo e veja o resultado. Os campos opcionais aumentam a precisão do cálculo.
       </CommonText>
       <FlexColumn verticalAlign='flex-start' horizontalAlign='center' gap='20px' margin='auto'>
         <CLabel label='Sexo*'>
@@ -141,7 +139,7 @@ export const PesoEstimado: React.FC = () => {
           currencyValue={formInfo.joelho || 0}
           setCurrencyValue={(value) => setFormInfo({ ...formInfo, joelho: value })}
           label='Altura joelho (cm)*'
-          maxLength={3}
+          maxLength={2}
         />
 
         <CLCurrencyInput2
@@ -158,24 +156,25 @@ export const PesoEstimado: React.FC = () => {
           maxLength={2}
         />
 
-        <CLCurrencyInput2
+        <CLCurrencyInput2Desc
           currencyValue={formInfo.abdomen || 0}
           setCurrencyValue={(value) => setFormInfo({ ...formInfo, abdomen: value })}
-          label='Circunferência do abdômen (cm)*'
+          label='Circunferência do abdômen (cm)'
           maxLength={3}
+          description='Mais recomendado'
         />
 
         <CLCurrencyInput2
           currencyValue={formInfo.subescapular || 0}
           setCurrencyValue={(value) => setFormInfo({ ...formInfo, subescapular: value })}
-          label='Circunferência do subescapular (cm)'
+          label='Espessura de dobra cutanea subescapular(cm)'
           maxLength={2}
         />
 
         <CLCurrencyInput2
           currencyValue={formInfo.semiEnvergadura || 0}
           setCurrencyValue={(value) => setFormInfo({ ...formInfo, semiEnvergadura: value })}
-          label='Circunferência do semi-envergadura (cm)'
+          label='Semi-envergadura (cm)'
           maxLength={2}
         />
 
@@ -196,7 +195,7 @@ export const PesoEstimadoResult: React.FC = () => {
     joelho: 0,
     braço: 0,
     panturrilha: 0,
-    abdomen: 0,
+    abdomen: undefined,
     subescapular: undefined,
     semiEnvergadura: undefined,
   })
@@ -224,11 +223,22 @@ export const PesoEstimadoResult: React.FC = () => {
         fontWeight='700'
         color='white-90'
         marginTop='0'
-        marginBottom='20px'
+        marginBottom='0px'
         textAlign='center'
       >
         Resultados
       </CommonText>
+      {(!formInfo.abdomen || !formInfo.semiEnvergadura || !formInfo.subescapular) && <CommonText
+        fontSize='16px'
+        fontWeight='700'
+        color='secondary-red-400'
+        marginTop='0'
+        marginBottom='20px'
+        textAlign='center'
+      >
+        Para maior precisão, informe todos os dados.
+      </CommonText>}
+
       {pesoEstimadoResult && <ResultCard pesoEstimadoResult={pesoEstimadoResult} />}
       {pesoEstimadoResult && <UsedInputs formInfo={formInfo} />}
     </FlexColumn>
