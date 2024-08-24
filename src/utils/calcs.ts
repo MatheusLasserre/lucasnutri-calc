@@ -237,7 +237,7 @@ export const CalcAdequacaoBraquial = (
       result: 'obesidade',
     },
   ]
-  const value = (CB * 100) / ((CB * 100) / getP50(sexo, idade))
+  const value =((CB * 100) / getP50(sexo, idade))
   const result = AdequacaoObject.find((element) => {
     const result = element.minValue <= value && value <= element.maxValue
     return result
@@ -397,6 +397,7 @@ const getP50 = (sexo: 1 | 2, idade: number) => {
     ]
     const result = P50Homem.find((element) => {
       const result = element.minValue <= idade && idade <= element.maxValue
+      if(!!result) console.log(result)
       return result
     })?.result
     if (!result) throw new Error('idade inválida')

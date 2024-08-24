@@ -63,7 +63,7 @@ export const PesoEstimado: React.FC = () => {
     const host = window.location.host
     const path = window.location.pathname
     const queryString = buildQueryString(truthyObject)
-    window.location.assign(`${protocol}//${host}${path}results?${queryString}`)
+    window.location.assign(`${protocol}//${host}${path}/results?${queryString}`)
   }
   return (
     <FlexColumn

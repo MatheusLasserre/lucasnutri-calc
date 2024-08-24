@@ -254,7 +254,7 @@ const UsedInputs: React.FC<{
               fontWeight: '700',
             }}
           >
-            Altura:
+            Cincurferencia de braço:
           </span>{' '}
           {formInfo.braco} cm
         </CommonText>
