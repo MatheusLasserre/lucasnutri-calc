@@ -1,4 +1,4 @@
-# Peso e altura estimado;
+# Peso e altura estimado -> Calcula o peso e a altura estimada + IMC
 Input: Sexo(Homem ou Mulher)
 Input: Etnia(Negro ou Branco)
 Input: Altura do joelho(cm)
@@ -21,14 +21,15 @@ Homens Negros: Altura = 73,42 + (1,79 x Altura do joelho)
 
 
 ## Formula de PESO mais recomendada para MULHERES por Chumlea et al: OK
-
+Requirements 1: joelho, braço, panturrilha e subescapular
+Requirements 2: abdomen, braço, panturrilha e sexo
 Peso Corporal(kg) - (0,87 x Altura do joelho) + (0,98 x circunferência de braço) + (1,27 x circuferência de panturrilha) + (0,4 x espessura de dobra cutânea subescapular) - 62,35
 
 Alternativa: Peso Corporal(kg) - (0,5263 x circunferência de abdomen) + (0,5759 x circunferência de braço) + (1,2452 x circuferência de panturrilha) - (4,8689 x sexo) - 32,9241 // Homem = 1, Mulher = 2
 
 
 ## Formula de PESO mais recomendada para HOMENS por Rabito et al: OK
-
+requirements 1: braço, abdomen, panturrilha
 Peso Corporal(kg) - (0,4808 x Circunferência de braço) + (0,5646 x circunferência de abdômen) + (1,3160 x circuferência de panturrilha) - 42,2450
 
 ## Formula de ALTURA mais recomendada para MULHERES por Rabito et al:
@@ -36,6 +37,10 @@ requirements: sexo, idade, semi-envergadura
 Altura = 63,525 – (3,237 x sexo) – (0,06904 x idade) + (1,293 x semi-envergadura)
 
 Homem: 1, Mulher: 2
+
+Hierarquia Mulher:
+
+
 
 ## Cálculo do IMC: peso / altura^2
     Data: <> 16,9: muito abaixo do peso
@@ -52,7 +57,7 @@ Homem: 1, Mulher: 2
 
 
 
-# Adequação de circunferência braquial;
+# Adequação de circunferência braquial; -> Adequação + Diagnóstico
 Requirements: CB obtida, idade, sexo
 Adequação da CB = CB obtida(cm) x 100 / CB P50(cm)
 ANOTAR TABELA
@@ -65,8 +70,8 @@ Resultados:
     > 120%: obesidade
 
 
-# Peso ideal;
-Requirements: Altura, idade
+# Peso ideal; -> Peso ideal(range) + IMC Atual
+Requirements: Altura, idade, peso
 
  peso / altura^2 -> Altura é fixo, buscar IMC 18,5- 24,9
  Calcular peso pra IMC 18,5
@@ -81,7 +86,8 @@ Calcular peso pra IMC 22
 
 
 
-# Peso ajustado (edemas, amputacoes)
+# Peso ajustado (edemas, amputacoes) -> Peso Ajustado
+
 Requirements: Peso, Amputação, Edema, Ascite
 Inputs: 
 Peso
@@ -113,3 +119,12 @@ Tabela Ascite 2:
 Leve - 2,2kg
 Moderado - 6kg
 Grave - 14kg
+
+No final: Adicionar um Buy me a Coffee
+Instagram Lucas e meu 
+
+
+-> Component que mostra o resultado
+-> Realizar cálculos
+-> Página de resultados pra cada cálculo
+-> Se precisar de um backend, fazer em GO

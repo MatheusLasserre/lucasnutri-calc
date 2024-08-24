@@ -66,3 +66,12 @@ export const isNumeric = (num: number | string) => {
     return !isNaN(number)
 }
 
+export const buildQueryString = (obj: {[key: string]: number | undefined}) => {
+    let queryString = ''
+    for(const key of Object.keys(obj)) {
+        if(obj[key as keyof typeof obj] !== undefined) {
+            queryString += `${key}=${obj[key as keyof typeof obj]}&`
+        }
+    }
+    return queryString
+}
