@@ -97,8 +97,7 @@ export const PesoEstimado: React.FC = () => {
         Cálculo de Peso e Altura Estimado
       </CommonText>
       <CommonText fontSize='14px' fontWeight='500' color='white-90' marginTop='0' textAlign='left'>
-        Preencha os dados abaixo e veja o resultado. Vários cálculos são utiliados, então quanto
-        mais dados você enviar, mais resultados aparecerão.
+        Preencha os campos abaixo e veja o resultado. Preencha todos os dados para máxima precisão. 
       </CommonText>
       <FlexColumn verticalAlign='flex-start' horizontalAlign='center' gap='20px' margin='auto'>
         <CLabel label='Sexo*'>
