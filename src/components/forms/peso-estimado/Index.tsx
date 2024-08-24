@@ -219,7 +219,7 @@ export const PesoEstimadoResult: React.FC = () => {
     }
   }, [])
   return (
-    <FlexColumn padding='30px 0 0 0' horizontalAlign='center' gap='20px'>
+    <FlexColumn padding='30px 10px 10px 10px' horizontalAlign='center' gap='20px'>
       <CommonText
         fontSize='24px'
         fontWeight='700'
