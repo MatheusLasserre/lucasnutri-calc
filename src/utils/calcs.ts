@@ -465,12 +465,12 @@ const IMCJObject = [
   {
     minValue: 35,
     maxValue: 40,
-    result: 'obesidade grau 1',
+    result: 'obesidade grau 2',
   },
   {
     minValue: 40,
     maxValue: Infinity,
-    result: 'obesidade grau 1',
+    result: 'obesidade grau 3',
   },
 ]
 const IMCJObjectElder = [
