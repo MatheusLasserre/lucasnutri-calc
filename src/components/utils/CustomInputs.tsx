@@ -204,12 +204,6 @@ export const SelectIntCustomMini: React.FC<SelectIntProps & {
   )
 }
 
-type SelectIntStaticProps = {
-  SelectConfig: SelectConfig
-  setCurrentSelected: React.Dispatch<number>
-  defaultValue?: number
-}
-
 export const SelectStaticInt: React.FC<SelectIntProps> = ({
   SelectConfig,
   setCurrentSelected,
@@ -296,7 +290,6 @@ export const SelectIntCards: React.FC<SelectIntCardProps> = ({
   SelectConfig,
   setCurrentSelected,
   currentSelected,
-  defaultValue,
 }) => {
   return (
     <div className={Style.cardsWrapper}>

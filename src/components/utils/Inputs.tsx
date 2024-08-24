@@ -1,10 +1,8 @@
 import Style from './Inputs.module.css'
-import { type ClassAttributes, forwardRef, type InputHTMLAttributes, useEffect, useRef, useState } from 'react'
-import { AngleUpIcon, CrossIcon, EyeIcon, UpArrowIcon } from './Icons'
+import { type ClassAttributes, forwardRef, type InputHTMLAttributes, useEffect, useState } from 'react'
+import { AngleUpIcon, CrossIcon, EyeIcon } from './Icons'
 import {
   FormatNumberMask,
-  handleValueInputChange,
-  isNumeric,
   NumberStringToNumber,
   padWithLeadingZeros,
 } from '~/utils/formating/credentials'
@@ -107,8 +105,7 @@ export const CText = forwardRef<HTMLInputElement, InputProps>(
 
 export const CPassword = forwardRef<HTMLInputElement, InputProps>(
   (
-    { type, onChange, placeholder, required, value, className, maxLength, name, id, onKeyDown },
-    ref,
+    { onChange, placeholder, required, value, className, maxLength, name, id }
   ) => {
     const [showPassword, setShowPassword] = useState(false)
     return (
@@ -132,8 +129,7 @@ export const CPassword = forwardRef<HTMLInputElement, InputProps>(
 
 export const CPassword2 = forwardRef<HTMLDivElement, InputProps>(
   (
-    { type, onChange, placeholder, required, value, className, maxLength, name, id, onKeyDown },
-    ref,
+    { onChange, placeholder, required, value, className, maxLength, name, id }
   ) => {
     const [showPassword, setShowPassword] = useState(false)
     return (
@@ -273,7 +269,7 @@ export const CRadio: React.FC<{
     <input
       type='radio'
       checked={selected}
-      onChange={(e) => setSelected()}
+      onChange={() => setSelected()}
       className={Style.radio + ' ' + `${selected ? Style.selected : ''}`}
     />
   )
@@ -897,14 +893,11 @@ type SelectPropsDoubleFilter = {
 }
 
 export const CLSelectStringDoubleFilter: React.FC<SelectPropsDoubleFilter> = ({
-  SelectConfig,
-  setCurrentSelected,
   label,
-  filled,
   query,
   setQuery,
 }) => {
-  const { isTarget, ref, setIsTarget } = useTarget(false)
+  const { isTarget, setIsTarget } = useTarget(false)
   return (
     <FlexRow verticalAlign='center' horizontalAlign='flex-start' gap='4px' margin='0' width='200px'>
       {label && (

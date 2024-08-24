@@ -196,43 +196,47 @@ export const CalcPesoEstimado = (input: PesoEstimadoInputProps): CalcPesoEstimad
   }
 }
 
-const AdequacaoObject = [
-  {
-    minValue: 0,
-    maxValue: 70,
-    result: 'Desnutrição Grave',
-  },
-  {
-    minValue: 70,
-    maxValue: 80,
-    result: 'Desnutrição Moderada',
-  },
-  {
-    minValue: 80,
-    maxValue: 90,
-    result: 'Desnutrição Moderada',
-  },
-  {
-    minValue: 90,
-    maxValue: 110,
-    result: 'Eutrofia',
-  },
-  {
-    minValue: 110,
-    maxValue: 120,
-    result: 'sobrepeso',
-  },
-  {
-    minValue: 120,
-    maxValue: Infinity,
-    result: 'obesidade',
-  },
-]
 export type CalcAdequacaoBraquialResult = {
   CB: number
   result: string
 }
-export const CalcAdequacaoBraquial = (CB: number, idade: number, sexo: 1 | 2): CalcAdequacaoBraquialResult => {
+export const CalcAdequacaoBraquial = (
+  CB: number,
+  idade: number,
+  sexo: 1 | 2,
+): CalcAdequacaoBraquialResult => {
+  const AdequacaoObject = [
+    {
+      minValue: 0,
+      maxValue: 70,
+      result: 'Desnutrição Grave',
+    },
+    {
+      minValue: 70,
+      maxValue: 80,
+      result: 'Desnutrição Moderada',
+    },
+    {
+      minValue: 80,
+      maxValue: 90,
+      result: 'Desnutrição Moderada',
+    },
+    {
+      minValue: 90,
+      maxValue: 110,
+      result: 'Eutrofia',
+    },
+    {
+      minValue: 110,
+      maxValue: 120,
+      result: 'sobrepeso',
+    },
+    {
+      minValue: 120,
+      maxValue: Infinity,
+      result: 'obesidade',
+    },
+  ]
   const value = (CB * 100) / ((CB * 100) / getP50(sexo, idade))
   const result = AdequacaoObject.find((element) => {
     const result = element.minValue <= value && value <= element.maxValue
@@ -244,294 +248,153 @@ export const CalcAdequacaoBraquial = (CB: number, idade: number, sexo: 1 | 2): C
     result,
   }
 }
-const P50Homem = [
-  {
-    minValue: 1,
-    maxValue: 1.9,
-    result: 16,
-  },
-  {
-    minValue: 2,
-    maxValue: 2.9,
-    result: 17.1,
-  },
-  {
-    minValue: 3,
-    maxValue: 3.9,
-    result: 16.8,
-  },
-  {
-    minValue: 4,
-    maxValue: 4.9,
-    result: 17.1,
-  },
-  {
-    minValue: 5,
-    maxValue: 5.9,
-    result: 17.5,
-  },
-  {
-    minValue: 6,
-    maxValue: 6.9,
-    result: 18,
-  },
-  {
-    minValue: 7,
-    maxValue: 7.9,
-    result: 18.7,
-  },
-  {
-    minValue: 8,
-    maxValue: 8.9,
-    result: 19.2,
-  },
-  {
-    minValue: 9,
-    maxValue: 9.9,
-    result: 20.1,
-  },
-  {
-    minValue: 10,
-    maxValue: 10.9,
-    result: 21.1,
-  },
-  {
-    minValue: 11,
-    maxValue: 11.9,
-    result: 22.1,
-  },
-  {
-    minValue: 12,
-    maxValue: 12.9,
-    result: 23.1,
-  },
-  {
-    minValue: 13,
-    maxValue: 13.9,
-    result: 24.5,
-  },
-  {
-    minValue: 14,
-    maxValue: 14.9,
-    result: 25.7,
-  },
-  {
-    minValue: 15,
-    maxValue: 15.9,
-    result: 27.2,
-  },
-  {
-    minValue: 16,
-    maxValue: 16.9,
-    result: 28.3,
-  },
-  {
-    minValue: 17,
-    maxValue: 17.9,
-    result: 28.6,
-  },
-  {
-    minValue: 18,
-    maxValue: 24.9,
-    result: 30.7,
-  },
-  {
-    minValue: 25,
-    maxValue: 29.9,
-    result: 31.8,
-  },
-  {
-    minValue: 30,
-    maxValue: 34.9,
-    result: 32.5,
-  },
-  {
-    minValue: 35,
-    maxValue: 39.9,
-    result: 32.9,
-  },
-  {
-    minValue: 40,
-    maxValue: 44.9,
-    result: 32.8,
-  },
-  {
-    minValue: 45,
-    maxValue: 49.9,
-    result: 32.6,
-  },
-  {
-    minValue: 50,
-    maxValue: 54.9,
-    result: 32.3,
-  },
-  {
-    minValue: 55,
-    maxValue: 59.9,
-    result: 32.3,
-  },
-  {
-    minValue: 60,
-    maxValue: 64.9,
-    result: 32,
-  },
-  {
-    minValue: 65,
-    maxValue: 69.9,
-    result: 31.1,
-  },
-  {
-    minValue: 70,
-    maxValue: 74.9,
-    result: 30.7,
-  },
-]
-const P50Mulher = [
-  {
-    minValue: 1,
-    maxValue: 1.9,
-    result: 15.7,
-  },
-  {
-    minValue: 2,
-    maxValue: 2.9,
-    result: 16.1,
-  },
-  {
-    minValue: 3,
-    maxValue: 3.9,
-    result: 16.6,
-  },
-  {
-    minValue: 4,
-    maxValue: 4.9,
-    result: 17,
-  },
-  {
-    minValue: 5,
-    maxValue: 5.9,
-    result: 17.5,
-  },
-  {
-    minValue: 6,
-    maxValue: 6.9,
-    result: 17.8,
-  },
-  {
-    minValue: 7,
-    maxValue: 7.9,
-    result: 18.6,
-  },
-  {
-    minValue: 8,
-    maxValue: 8.9,
-    result: 19.5,
-  },
-  {
-    minValue: 9,
-    maxValue: 9.9,
-    result: 20.6,
-  },
-  {
-    minValue: 10,
-    maxValue: 10.9,
-    result: 21.2,
-  },
-  {
-    minValue: 11,
-    maxValue: 11.9,
-    result: 22.2,
-  },
-  {
-    minValue: 12,
-    maxValue: 12.9,
-    result: 23.7,
-  },
-  {
-    minValue: 13,
-    maxValue: 13.9,
-    result: 24.3,
-  },
-  {
-    minValue: 14,
-    maxValue: 14.9,
-    result: 25.1,
-  },
-  {
-    minValue: 15,
-    maxValue: 15.9,
-    result: 25.2,
-  },
-  {
-    minValue: 16,
-    maxValue: 16.9,
-    result: 26.1,
-  },
-  {
-    minValue: 17,
-    maxValue: 17.9,
-    result: 26.6,
-  },
-  {
-    minValue: 18,
-    maxValue: 24.9,
-    result: 26.8,
-  },
-  {
-    minValue: 25,
-    maxValue: 29.9,
-    result: 27.6,
-  },
-  {
-    minValue: 30,
-    maxValue: 34.9,
-    result: 28.6,
-  },
-  {
-    minValue: 35,
-    maxValue: 39.9,
-    result: 29.4,
-  },
-  {
-    minValue: 40,
-    maxValue: 44.9,
-    result: 29.7,
-  },
-  {
-    minValue: 45,
-    maxValue: 49.9,
-    result: 30.1,
-  },
-  {
-    minValue: 50,
-    maxValue: 54.9,
-    result: 30.6,
-  },
-  {
-    minValue: 55,
-    maxValue: 59.9,
-    result: 30.9,
-  },
-  {
-    minValue: 60,
-    maxValue: 64.9,
-    result: 30.8,
-  },
-  {
-    minValue: 65,
-    maxValue: 69.9,
-    result: 30.5,
-  },
-  {
-    minValue: 70,
-    maxValue: 74.9,
-    result: 30.3,
-  },
-]
+
 const getP50 = (sexo: 1 | 2, idade: number) => {
   if (idade < 1 || idade >= 75) throw new Error('idade inválida')
   const Sexo = getSexByNumber(sexo)
   if (Sexo === 'Homem') {
+    const P50Homem = [
+      {
+        minValue: 1,
+        maxValue: 1.9,
+        result: 16,
+      },
+      {
+        minValue: 2,
+        maxValue: 2.9,
+        result: 17.1,
+      },
+      {
+        minValue: 3,
+        maxValue: 3.9,
+        result: 16.8,
+      },
+      {
+        minValue: 4,
+        maxValue: 4.9,
+        result: 17.1,
+      },
+      {
+        minValue: 5,
+        maxValue: 5.9,
+        result: 17.5,
+      },
+      {
+        minValue: 6,
+        maxValue: 6.9,
+        result: 18,
+      },
+      {
+        minValue: 7,
+        maxValue: 7.9,
+        result: 18.7,
+      },
+      {
+        minValue: 8,
+        maxValue: 8.9,
+        result: 19.2,
+      },
+      {
+        minValue: 9,
+        maxValue: 9.9,
+        result: 20.1,
+      },
+      {
+        minValue: 10,
+        maxValue: 10.9,
+        result: 21.1,
+      },
+      {
+        minValue: 11,
+        maxValue: 11.9,
+        result: 22.1,
+      },
+      {
+        minValue: 12,
+        maxValue: 12.9,
+        result: 23.1,
+      },
+      {
+        minValue: 13,
+        maxValue: 13.9,
+        result: 24.5,
+      },
+      {
+        minValue: 14,
+        maxValue: 14.9,
+        result: 25.7,
+      },
+      {
+        minValue: 15,
+        maxValue: 15.9,
+        result: 27.2,
+      },
+      {
+        minValue: 16,
+        maxValue: 16.9,
+        result: 28.3,
+      },
+      {
+        minValue: 17,
+        maxValue: 17.9,
+        result: 28.6,
+      },
+      {
+        minValue: 18,
+        maxValue: 24.9,
+        result: 30.7,
+      },
+      {
+        minValue: 25,
+        maxValue: 29.9,
+        result: 31.8,
+      },
+      {
+        minValue: 30,
+        maxValue: 34.9,
+        result: 32.5,
+      },
+      {
+        minValue: 35,
+        maxValue: 39.9,
+        result: 32.9,
+      },
+      {
+        minValue: 40,
+        maxValue: 44.9,
+        result: 32.8,
+      },
+      {
+        minValue: 45,
+        maxValue: 49.9,
+        result: 32.6,
+      },
+      {
+        minValue: 50,
+        maxValue: 54.9,
+        result: 32.3,
+      },
+      {
+        minValue: 55,
+        maxValue: 59.9,
+        result: 32.3,
+      },
+      {
+        minValue: 60,
+        maxValue: 64.9,
+        result: 32,
+      },
+      {
+        minValue: 65,
+        maxValue: 69.9,
+        result: 31.1,
+      },
+      {
+        minValue: 70,
+        maxValue: 74.9,
+        result: 30.7,
+      },
+    ]
     const result = P50Homem.find((element) => {
       const result = element.minValue <= idade && idade <= element.maxValue
       return result
@@ -539,6 +402,148 @@ const getP50 = (sexo: 1 | 2, idade: number) => {
     if (!result) throw new Error('idade inválida')
     return result
   } else {
+    const P50Mulher = [
+      {
+        minValue: 1,
+        maxValue: 1.9,
+        result: 15.7,
+      },
+      {
+        minValue: 2,
+        maxValue: 2.9,
+        result: 16.1,
+      },
+      {
+        minValue: 3,
+        maxValue: 3.9,
+        result: 16.6,
+      },
+      {
+        minValue: 4,
+        maxValue: 4.9,
+        result: 17,
+      },
+      {
+        minValue: 5,
+        maxValue: 5.9,
+        result: 17.5,
+      },
+      {
+        minValue: 6,
+        maxValue: 6.9,
+        result: 17.8,
+      },
+      {
+        minValue: 7,
+        maxValue: 7.9,
+        result: 18.6,
+      },
+      {
+        minValue: 8,
+        maxValue: 8.9,
+        result: 19.5,
+      },
+      {
+        minValue: 9,
+        maxValue: 9.9,
+        result: 20.6,
+      },
+      {
+        minValue: 10,
+        maxValue: 10.9,
+        result: 21.2,
+      },
+      {
+        minValue: 11,
+        maxValue: 11.9,
+        result: 22.2,
+      },
+      {
+        minValue: 12,
+        maxValue: 12.9,
+        result: 23.7,
+      },
+      {
+        minValue: 13,
+        maxValue: 13.9,
+        result: 24.3,
+      },
+      {
+        minValue: 14,
+        maxValue: 14.9,
+        result: 25.1,
+      },
+      {
+        minValue: 15,
+        maxValue: 15.9,
+        result: 25.2,
+      },
+      {
+        minValue: 16,
+        maxValue: 16.9,
+        result: 26.1,
+      },
+      {
+        minValue: 17,
+        maxValue: 17.9,
+        result: 26.6,
+      },
+      {
+        minValue: 18,
+        maxValue: 24.9,
+        result: 26.8,
+      },
+      {
+        minValue: 25,
+        maxValue: 29.9,
+        result: 27.6,
+      },
+      {
+        minValue: 30,
+        maxValue: 34.9,
+        result: 28.6,
+      },
+      {
+        minValue: 35,
+        maxValue: 39.9,
+        result: 29.4,
+      },
+      {
+        minValue: 40,
+        maxValue: 44.9,
+        result: 29.7,
+      },
+      {
+        minValue: 45,
+        maxValue: 49.9,
+        result: 30.1,
+      },
+      {
+        minValue: 50,
+        maxValue: 54.9,
+        result: 30.6,
+      },
+      {
+        minValue: 55,
+        maxValue: 59.9,
+        result: 30.9,
+      },
+      {
+        minValue: 60,
+        maxValue: 64.9,
+        result: 30.8,
+      },
+      {
+        minValue: 65,
+        maxValue: 69.9,
+        result: 30.5,
+      },
+      {
+        minValue: 70,
+        maxValue: 74.9,
+        result: 30.3,
+      },
+    ]
     const result = P50Mulher.find((element) => {
       const result = element.minValue <= idade && idade <= element.maxValue
       return result
@@ -548,70 +553,69 @@ const getP50 = (sexo: 1 | 2, idade: number) => {
   }
 }
 
-const IMCJObject = [
-  {
-    minValue: 0,
-    maxValue: 16.9,
-    result: 'muito abaixo do peso',
-  },
-  {
-    minValue: 17,
-    maxValue: 18.4,
-    result: 'abaixo do peso',
-  },
-  {
-    minValue: 18.5,
-    maxValue: 24.9,
-    result: 'peso normal',
-  },
-  {
-    minValue: 25,
-    maxValue: 29.9,
-    result: 'acima do peso',
-  },
-  {
-    minValue: 30,
-    maxValue: 34.9,
-    result: 'obesidade grau 1',
-  },
-  {
-    minValue: 35,
-    maxValue: 40,
-    result: 'obesidade grau 2',
-  },
-  {
-    minValue: 40,
-    maxValue: Infinity,
-    result: 'obesidade grau 3',
-  },
-]
-const IMCJObjectElder = [
-  {
-    minValue: 0,
-    maxValue: 22,
-    result: 'Desnutrição',
-  },
-  {
-    minValue: 22,
-    maxValue: 27,
-    result: 'Eutrofia',
-  },
-  {
-    minValue: 27,
-    maxValue: Infinity,
-    result: 'obesidade',
-  },
-]
-
 const CalcIMC = (peso: number, altura: number, idade: number) => {
   console.log(peso, altura, idade)
   const IMC = peso / Math.pow(altura / 100, 2)
   let IMCResult: string | undefined
   if (isIdoso(idade)) {
+    const IMCJObjectElder = [
+      {
+        minValue: 0,
+        maxValue: 22,
+        result: 'Desnutrição',
+      },
+      {
+        minValue: 22,
+        maxValue: 27,
+        result: 'Eutrofia',
+      },
+      {
+        minValue: 27,
+        maxValue: Infinity,
+        result: 'obesidade',
+      },
+    ]
     IMCResult = IMCJObjectElder.find((element) => {
       return element.minValue <= IMC && IMC <= element.maxValue
     })?.result
   } else {
+    const IMCJObject = [
+      {
+        minValue: 0,
+        maxValue: 16.9,
+        result: 'muito abaixo do peso',
+      },
+      {
+        minValue: 17,
+        maxValue: 18.4,
+        result: 'abaixo do peso',
+      },
+      {
+        minValue: 18.5,
+        maxValue: 24.9,
+        result: 'peso normal',
+      },
+      {
+        minValue: 25,
+        maxValue: 29.9,
+        result: 'acima do peso',
+      },
+      {
+        minValue: 30,
+        maxValue: 34.9,
+        result: 'obesidade grau 1',
+      },
+      {
+        minValue: 35,
+        maxValue: 40,
+        result: 'obesidade grau 2',
+      },
+      {
+        minValue: 40,
+        maxValue: Infinity,
+        result: 'obesidade grau 3',
+      },
+    ]
     IMCResult = IMCJObject.find((element) => {
       return element.minValue <= IMC && IMC <= element.maxValue
     })?.result

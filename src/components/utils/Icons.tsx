@@ -6,16 +6,8 @@ type IconProps = {
   color?: CSS_VARS_OPTIONS
 }
 
-type IconColor = {
-  color?: string
-}
-
 type IconToggle = {
   toggle?: boolean
-}
-
-type IconScale = {
-  scale?: number
 }
 
 export type UniversalIconProps = IconProps & {
@@ -422,7 +414,7 @@ export const CashIcon: React.FC<IconProps> = ({ width, onClick }) => (
   </svg>
 )
 
-export const MoneyIcon: React.FC<IconProps> = ({ width, onClick }) => (
+export const MoneyIcon: React.FC<IconProps> = () => (
   <svg width='24' height='21' viewBox='0 0 25 21' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <g clipPath='url(#clip0_8809_15344)'>
       <path
@@ -542,7 +534,7 @@ export const MoneyIcon: React.FC<IconProps> = ({ width, onClick }) => (
   </svg>
 )
 
-export const WalletIcon: React.FC<IconProps> = ({ width, onClick }) => (
+export const WalletIcon: React.FC<IconProps> = () => (
   <svg width='21' height='21' viewBox='0 0 21 21' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <g clipPath='url(#clip0_8809_15378)'>
       <path
@@ -720,7 +712,7 @@ export const UpArrowIcon: React.FC<IconProps> = ({ width, onClick }) => (
   </svg>
 )
 
-export const PlusIcon2: React.FC<IconProps> = ({ width, onClick }) => (
+export const PlusIcon2: React.FC<IconProps> = ({ onClick }) => (
   <svg
     width={'22'}
     height={'22'}
@@ -752,7 +744,7 @@ export const PlusIcon2: React.FC<IconProps> = ({ width, onClick }) => (
   </svg>
 )
 
-export const CardIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
+export const CardIcon: React.FC<IconProps> = ({ onClick, color }) => (
   <svg
     width='15'
     height='12'
@@ -769,7 +761,7 @@ export const CardIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
   </svg>
 )
 
-export const GraphicIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
+export const GraphicIcon: React.FC<IconProps> = ({ onClick, color }) => (
   <svg
     width='19'
     height='19'
@@ -786,7 +778,7 @@ export const GraphicIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
   </svg>
 )
 
-export const DataIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
+export const DataIcon: React.FC<IconProps> = ({ onClick, color }) => (
   <svg
     width='15'
     height='15'
@@ -803,7 +795,7 @@ export const DataIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
   </svg>
 )
 
-export const ChatIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
+export const ChatIcon: React.FC<IconProps> = ({ onClick, color }) => (
   <svg
     width='15'
     height='16'
@@ -820,7 +812,7 @@ export const ChatIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
   </svg>
 )
 
-export const HomeIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
+export const HomeIcon: React.FC<IconProps> = ({ onClick, color }) => (
   <svg
     width='14'
     height='16'
@@ -837,7 +829,7 @@ export const HomeIcon: React.FC<IconProps> = ({ width, onClick, color }) => (
   </svg>
 )
 
-export const ReceiptIcon2: React.FC<IconProps> = ({ width, onClick, color }) => (
+export const ReceiptIcon2: React.FC<IconProps> = ({ onClick, color }) => (
   <svg
     width='15'
     height='16'

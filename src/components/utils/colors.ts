@@ -129,7 +129,7 @@ export const BG_COLORS = {
   'white-30': 'white-30bg',
   'white-20': 'white-20bg',
   'white-10': 'white-10bg',
-  'undefined': ' ',
+  'undefined': 'unset',
   'transparent': 'transparent',
 }
 

@@ -2,26 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { StateButton } from '~/components/utils/Buttons'
 import { CommonText } from '~/components/utils/Headers'
 import {
-  CLabel,
-  CLCurrencyInput,
   CLCurrencyInput2,
-  CLCurrencyInput2Desc,
   CLCurrencyInput2kg,
   CLCurrencyInput3,
-  CLRadio,
-  CRadio,
   FormError,
-  FormFlex,
 } from '~/components/utils/Inputs'
-import { FlexColumn, FlexRow } from '~/components/utils/Utils'
+import { FlexColumn } from '~/components/utils/Utils'
 import {
-  CalcPesoEstimado,
   CalcPesoIdeal,
-  type CalcPesoEstimadoResult,
   type CalcPesoIdealResult,
 } from '~/utils/calcs'
 import { buildQueryString } from '~/utils/formating/credentials'
-import { getEtniaByNumber, getSexByNumber } from '~/utils/getters'
 
 export type PesoIdealInputProps = {
   idade: number

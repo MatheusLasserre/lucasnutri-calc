@@ -1,9 +1,7 @@
-import { forwardRef, type HTMLAttributes, useEffect, useState } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import Style from './Utils.module.css'
-import { CommonText } from './Headers'
 import { clx } from '~/utils/style'
 import { Loading } from './Loading'
-import { RightArrowIcon } from './Icons'
 import { BG_COLORS, type BG_COLORS_OPTIONS, CSS_VARS, type CSS_VARS_OPTIONS } from './colors'
 
 type HideComponentProps = {
@@ -257,12 +255,6 @@ export const FlexItem: React.FC<FlexItemProps> = ({
   )
 }
 
-type ImageContainerProps = {
-  children: React.ReactNode
-  width?: string
-  height?: string
-} & HTMLAttributes<HTMLDivElement>
-
 export const LoadingWrapper: React.FC<{ loading: boolean; children: React.ReactNode }> = ({
   loading,
   children,
@@ -306,7 +298,4 @@ export const IconBackgroundNormalizer: React.FC<{
       </IconNormalizer>
     </div>
   )
-}
-type PaginationProps = {
-  next?: boolean
 }

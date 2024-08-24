@@ -3,14 +3,11 @@ import { StateButton } from '~/components/utils/Buttons'
 import { CommonText } from '~/components/utils/Headers'
 import {
   CLabel,
-  CLCurrencyInput,
   CLCurrencyInput2,
   CLCurrencyInput2Desc,
   CLCurrencyInput3,
   CLRadio,
-  CRadio,
   FormError,
-  FormFlex,
 } from '~/components/utils/Inputs'
 import { FlexColumn, FlexRow } from '~/components/utils/Utils'
 import { CalcPesoEstimado, type CalcPesoEstimadoResult } from '~/utils/calcs'

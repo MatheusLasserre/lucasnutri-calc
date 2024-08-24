@@ -31,31 +31,17 @@ export const ModalHelper: React.FC<{
   )
 }
 
-type SuccessModalProps = {
-  title: string
-  message: string
-  confirm: () => void
-  confirmText?: string
-  cancel?: () => void
-  cancelText?: string
-  visible?: boolean
-  paymentUrl: string
-}
-
-
 type ContextMenuProps = {
   children: React.ReactNode
   visible: boolean
-  close: () => void
   x: number
   y: number
 }
 
 export const ContextMenu = forwardRef<HTMLDivElement, ContextMenuProps>(
-  ({ children, visible, close, x, y }, ref) => {
+  ({ children, visible, x, y }, ref) => {
     visible ? disableBodyScroll(document.body) : enableBodyScroll(document.body)
     if (!visible) return null
-    const abc = <p></p>
     return (
       <FlexColumn
         ref={ref}
