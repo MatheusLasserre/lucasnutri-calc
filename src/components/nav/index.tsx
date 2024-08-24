@@ -6,10 +6,10 @@ import { CommonText } from '../utils/Headers'
 export const Tabs: React.FC = () => {
 
     type TabsProps = "PesoEstimado" | "Adequacao" | "PesoIdeal" | "PesoAJustado"
-    const [activeTab, setActiveTab] = React.useState<TabsProps>("PesoEstimado")
+    const [activeTab, setActiveTab] = React.useState<TabsProps | string>("")
     useEffect(() => {
         const path = window.location.pathname
-        if (path.includes('peso-estimado')) {
+        if (path.includes('peso-e-altura-estimado')) {
             setActiveTab('PesoEstimado')
         } else if (path.includes('adequacao')) {
             setActiveTab('Adequacao')
@@ -51,9 +51,9 @@ export const Tabs: React.FC = () => {
         <StateButton onClick={() => handleSwitchTab('PesoIdeal')} type={activeTab === 'PesoIdeal' ? 'outlineCompact' : 'compact'} loading={false}>
             Peso Ideal
         </StateButton>
-        <StateButton onClick={() => handleSwitchTab('PesoAJustado')} type={activeTab === 'PesoAJustado' ? 'outlineCompact' : 'compact'} loading={false}>
+        {/* <StateButton onClick={() => handleSwitchTab('PesoAJustado')} type={activeTab === 'PesoAJustado' ? 'outlineCompact' : 'compact'} loading={false}>
             Peso Ajustado
-        </StateButton> 
+        </StateButton>  */}
     </FlexColumn>
   )
 }
